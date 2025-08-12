@@ -1,0 +1,28 @@
+[
+  {
+    "question_text": "Which Azure service is used to enforce organizational standards and assess compliance at scale?",
+    "options": [
+      "Azure Policy",
+      "Azure Monitor",
+      "Azure Resource Manager",
+      "Azure Blueprints"
+    ],
+    "answerIndex": 0,
+    "explanation": "Azure Policy is used to enforce organizational standards and assess compliance.",
+    "topic_id": "AZ-500: Azure Security",
+    "difficulty": "medium"
+  },
+  {
+    "question_text": "Which Azure feature provides just-in-time access to virtual machines to reduce exposure to RDP/SSH ports?",
+    "options": [
+      "Azure Firewall",
+      "Just-in-Time VM Access",
+      "NSG Rules",
+      "Azure Bastion"
+    ],
+    "answerIndex": 1,
+    "explanation": "Just-in-Time VM Access in Microsoft Defender for Cloud restricts port access until needed.",
+    "topic_id": "AZ-500: Azure Security",
+    "difficulty": "medium"
+  }
+]

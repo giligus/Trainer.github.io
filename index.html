@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AZ-500 – Quiz Trainer</title>
+<style>
+body { font-family: Arial, sans-serif; background-color: #0f172a; color: white; padding: 20px; }
+button { margin-top: 10px; padding: 10px; }
+.question { margin-bottom: 20px; }
+.options label { display: block; margin-left: 20px; }
+</style>
+</head>
+<body>
+<h1>AZ-500 – Quiz Trainer</h1>
+<div id="quiz-container">Loading questions...</div>
+<button onclick="checkAnswers()">Check answers</button>
+<script>
+let questions = [];
+fetch('questions.json')
+  .then(response => response.json())
+  .then(data => {
+    questions = data;
+    renderQuestions();
+  });
+
+function renderQuestions() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  questions.forEach((q, index) => {
+    let html = `<div class="question"><p>${index + 1}. ${q.question_text}</p><div class="options">`;
+    q.options.forEach((opt, i) => {
+      html += `<label><input type="radio" name="q${index}" value="${i}"> ${opt}</label>`;
+    });
+    html += `</div></div>`;
+    container.innerHTML += html;
+  });
+}
+
+function checkAnswers() {
+  questions.forEach((q, index) => {
+    const selected = document.querySelector(`input[name="q${index}"]:checked`);
+    if (selected) {
+      const answer = parseInt(selected.value);
+      if (answer === q.answerIndex) {
+        alert(`Q${index+1}: Correct! ${q.explanation}`);
+      } else {
+        alert(`Q${index+1}: Incorrect. Correct answer is: ${q.options[q.answerIndex]}. ${q.explanation}`);
+      }
+    } else {
+      alert(`Q${index+1}: No answer selected.`);
+    }
+  });
+}
+</script>
+</body>
+</html>
